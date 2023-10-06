@@ -1,0 +1,52 @@
+.header {
+  display: flex;
+  padding: 20px 40px 60px 40px;
+  color: #f1efef;
+}
+
+.header__left{
+  display: flex;
+  flex: 2;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__right{
+  display: flex;
+  align-items: center;
+  flex: 2;
+  justify-content: flex-end;
+}
+
+.header__logo img {
+  max-width: 100px;
+}
+
+.header__title h1 {
+  font-size: 24px; 
+  margin: 0; 
+}
+
+.header__auth-buttons {
+  display: flex;
+}
+
+.header__sign-up-button{
+  margin-right: 10px;
+}
+
+.header__sign-up-button,
+.header__login-button {
+  border: 1px solid #9090ffba;
+  padding: 10px 30px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 12px;
+}
+
+
+.header__sign-up-button:hover,
+.header__login-button:hover {
+  /* background-color: #9090ffba; */
+  background: linear-gradient(to bottom, #9090ff, #7070cc);
+}
