@@ -69,9 +69,26 @@ export const getUser = createAsyncThunk(
 // Upload user
 export const uploadAvatar = createAsyncThunk(
   "user/uploadAvatar",
-  async (formData, thunkAPI) => {
+  async (imageFormData, thunkAPI) => {
     try {
-      return await userService.uploadAvatar(formData);
+      return await userService.uploadAvatar(imageFormData);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+// Update the User email
+export const updateUserEmail = createAsyncThunk(
+  "user/updateUserEmail",
+  async (user, thunkAPI) => {
+    try {
+      return await userService.updateUserEmail(user);
     } catch (error) {
       const message =
         (error.response &&
@@ -141,6 +158,20 @@ export const userSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(getUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        state.user = null;
+      })
+      .addCase(updateUserEmail.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateUserEmail.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user = action.payload;
+      })
+      .addCase(updateUserEmail.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
