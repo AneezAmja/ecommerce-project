@@ -5,7 +5,7 @@ import { logout, reset } from "../../features/user/userSlice";
 import { FaSignOutAlt, FaRegUser } from "react-icons/fa";
 import "./ProfileIcon.css";
 
-const Profile = ({ user }) => {
+const ProfileIcon = ({ user }) => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
@@ -55,4 +55,4 @@ const Profile = ({ user }) => {
   );
 };
 
-export default Profile;
+export default ProfileIcon;
