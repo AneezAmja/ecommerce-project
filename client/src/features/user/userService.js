@@ -61,6 +61,21 @@ const uploadAvatar = async (formData) => {
   return { ...userData, profileImageURL };
 };
 
+// upload the user's avatar
+const updateUserEmail = async (formData) => {
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const response = axios.create({
+    headers: {
+      Authorization: `Bearer ${user.token}`,
+    },
+  });
+
+  const res = await response.put(API_URL + "update-email", formData);
+
+  return res.data;
+};
+
 // logout user
 const logout = async () => {
   localStorage.removeItem("user");
@@ -71,6 +86,7 @@ const userService = {
   logout,
   getUser,
   uploadAvatar,
+  updateUserEmail,
   login,
 };
 
