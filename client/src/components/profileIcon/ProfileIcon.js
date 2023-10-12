@@ -22,7 +22,7 @@ const ProfileIcon = ({ user }) => {
     <div className="profile-icon-container">
       {(user && !user.profileImageURL) || user.profileImageURL === "" ? (
         <Link className="profile-icon--no-icon" onClick={handleProfileClick}>
-          <div className="profile-icon">{user.name.charAt(0).toUpperCase()}</div>
+          <div className="profile-icon">{user && user?.name ? user.name.charAt(0).toUpperCase() : ""}</div>
         </Link>
       ) : (
         <Link onClick={handleProfileClick}>
