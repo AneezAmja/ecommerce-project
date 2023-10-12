@@ -61,7 +61,7 @@ const uploadAvatar = async (formData) => {
   return { ...userData, profileImageURL };
 };
 
-// upload the user's avatar
+// updating the user's email
 const updateUserEmail = async (formData) => {
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -73,7 +73,9 @@ const updateUserEmail = async (formData) => {
 
   const res = await response.put(API_URL + "update-email", formData);
 
-  return res.data;
+  const { email, ...userData } = res.data;
+
+  return { ...userData, email };
 };
 
 // logout user
