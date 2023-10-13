@@ -4,35 +4,29 @@ import { Link } from "react-router-dom";
 import "./Products.css";
 import Spinner from "../../components/spinner/Spinner";
 import { getUser } from "../../features/user/userSlice";
-import { useDispatch } from "react-redux";
+import { getProducts } from "../../features/product/productSlice";
+import { useSelector, useDispatch } from "react-redux";
 
-const API_URL = "/api/products";
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // const [products, setProducts] = useState([]);
+  // const [loading, setLoading] = useState(true);
 
-  
   const dispatch = useDispatch();
+
+  const { products, isError, isSuccess, isLoading, message } = useSelector(
+    (state) => state.products
+  );
 
 
   useEffect(() => {
     dispatch(getUser());
-    getProducts();
-  }, []);
+    dispatch(getProducts())
+  }, [isError, isSuccess, message, dispatch]);
 
-  const getProducts = async () => {
-    const response = await axios.get(API_URL + `/`);
-    const productsData = response.data;
-
-    // console.log(productsData);
-
-    setProducts(productsData);
-    setLoading(false);
-  };
-
-  // if (loading) return <div className="loading">Loading...</div>;
-  if (loading) return <Spinner/>;
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   return (
     <div className="product-container">
