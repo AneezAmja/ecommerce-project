@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import { getIndividualProduct } from "../../features/product/productSlice";
 import { getUser } from "../../features/user/userSlice";
+import { addToCart, getCart } from "../../features/cart/cartSlice";
 
 const ProductDetail = () => {
   
@@ -14,13 +15,14 @@ const ProductDetail = () => {
     (state) => state.products
   );
 
+  const [quantity, setQuantity] = useState(0)
+
   const { id } = useParams();
 
   const dispatch = useDispatch();
 
   useEffect(() => {
 
-    
     dispatch(getUser())
     dispatch(getIndividualProduct(id))
 
@@ -28,11 +30,19 @@ const ProductDetail = () => {
       toast.error(message);
     }
 
-  }, [isError, message, dispatch]);
+  }, [isError, message, dispatch, id]);
 
 
 
   const addToBasket = () => {
+
+    const cartData = {
+      productId: product.productDetail._id,
+      quantity
+    }
+
+
+    dispatch(addToCart(cartData)).then(()=> dispatch(getCart()))
     console.log("added to basket")
   }
 
@@ -61,7 +71,7 @@ const ProductDetail = () => {
 
                 <div className="product-detail-buy-container">
                   <div className="quantity-input">    
-                    <input className="quantity-amount" type="number" id="quantity" name="quantity" placeholder="0" min="1" />
+                    <input className="quantity-amount" type="number" id="quantity" name="quantity" placeholder="0" min="1" value={quantity} onChange={e => setQuantity(e.target.value)} />
                   </div>
 
                     <button onClick={addToBasket} className="product-detail-buy-container__buy">
