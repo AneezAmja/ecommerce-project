@@ -11,6 +11,7 @@ import ProductDetail from "./pages/productdetail/ProductDetail";
 import Register from "./pages/register/Register";
 import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
+import Cart from "./pages/cart/Cart";
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -25,6 +26,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/profile" element={<> <Header /><Profile /> </>} />    {/* TODO: Need to make protected */}
+            <Route path="/cart" element={<> <Header /><Cart /> </>} />    
             <Route path="*" element={<Navigate replace to={"/products"} />} />
           </Routes>
         </Router>
