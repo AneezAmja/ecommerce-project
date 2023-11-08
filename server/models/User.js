@@ -19,7 +19,7 @@ const userSchema = mongoose.Schema(
       type: String,
       default: "",
     },
-    // TODO: ADD PICTUREPATH FOR IMAGES FOR USER.
+    // cart: { type: mongoose.Schema.Types.ObjectId, ref: 'Cart' }
   },
   {
     timestamps: true,
