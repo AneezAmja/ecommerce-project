@@ -1,0 +1,46 @@
+th{
+    text-align: left;
+}
+
+.cart-table{
+    border-collapse: collapse;
+}
+
+.cart-table__row{
+    padding-bottom: 30px;
+}
+
+td {
+    padding-bottom:20px;
+}
+  
+th{
+    padding-bottom: 10px;
+}
+
+.cart-table__image {
+    width: 130px;
+    height: 130px;
+    /* height: auto; */
+    max-height: 130px;
+    border-radius: 50%;
+    display: block;
+    object-fit: cover;
+}
+
+.cart__item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cart-remove{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.cart-table__name{
+    padding-right: 30px;
+}
