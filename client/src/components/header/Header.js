@@ -23,11 +23,6 @@ function Header() {
         </div>
       </div>
       <div className="header__right">
-        <Link className="shopping-cart" to="/">
-          <FaShoppingCart
-            style={{ marginRight: "30px", width: "20px", height: "20px" }}
-          />
-        </Link>
         {user ? (
           <div>
             <ProfileIcon user={user} />
