@@ -15,11 +15,19 @@ const getIndividualProduct = async (id) => {
   return response.data;
 };
 
+// Purchase a  product
+const purchaseProduct = async (productData) => {
+  const response = await axios.post(API_URL + `/purchase`, productData);
+
+  return response.data;
+};
+
 
 
 const productService = {
   getProducts,
-  getIndividualProduct
+  getIndividualProduct,
+  purchaseProduct
 };
 
 export default productService;
