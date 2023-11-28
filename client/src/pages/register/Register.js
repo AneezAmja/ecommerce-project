@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 import Spinner from "../../components/spinner/Spinner";
 
-import "./Register.css";
+import "./Register.scss";
 
 const Register = () => {
   const [formData, setFormData] = useState({
