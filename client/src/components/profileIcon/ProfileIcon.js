@@ -36,7 +36,6 @@ const ProfileIcon = ({ user }) => {
           />
         </Link>
       )}
-      {/* {user.name.charAt(0).toUpperCase()} */}
       {open && (
         <div className="dropdown-menu">
           <div className="dropdown-menu__items">
