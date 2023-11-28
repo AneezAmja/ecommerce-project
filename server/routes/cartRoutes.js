@@ -1,5 +1,5 @@
 const express = require("express");
-const { getCart, addToCart, removeFromCart,updatingCartSingle  } = require("../controllers/cartController");
+const { getCart, addToCart, removeFromCart } = require("../controllers/cartController");
 const { protect } = require("../middleware/authMiddleware");
 
 const router = express.Router();
@@ -8,7 +8,7 @@ const router = express.Router();
 router.get("/", protect, getCart)
 router.post("/addToCart", protect, addToCart);
 router.post("/removeFromCart", protect, removeFromCart);
-router.put("/updatingCartSingle", protect, updatingCartSingle);
+// router.put("/updatingCartSingle", protect, updatingCartSingle);
 
 
 
