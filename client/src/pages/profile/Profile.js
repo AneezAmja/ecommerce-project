@@ -5,6 +5,7 @@ import {
   getUser,
   uploadAvatar,
   updateUserEmail,
+  updateUserPassword
 } from "../../features/user/userSlice";
 import { FaUpload } from "react-icons/fa";
 import Spinner from "../../components/spinner/Spinner";
@@ -18,9 +19,8 @@ const Profile = () => {
     (state) => state.user
   );
 
-
   const [formData, setFormData] = useState({
-    email: user ? user.email : "",
+    email: "",
     password: "",
   });
 
@@ -64,10 +64,20 @@ const Profile = () => {
 
   const updateCredentials = () => {
     try {
-      dispatch(updateUserEmail({ updatedEmail: email })).then(() => {
-        dispatch(getUser());
-      });
-      toast.success("Email updated successfully.");
+      if (email !== user.email) {
+        dispatch(updateUserEmail({ updatedEmail: email })).then(() => {
+          dispatch(getUser());
+        });
+      }
+
+      if (password) {
+        dispatch(updateUserPassword({ updatedPassword: password })).then(() => {
+          dispatch(getUser());
+        });
+      }
+
+
+      toast.success("Credentials updated successfully.");
     } catch (error) {
       toast.error("Error updating email.");
     }
@@ -120,6 +130,7 @@ const Profile = () => {
               type="email"
               id="email"
               name="email"
+              placeholder={user.email}
               value={email}
               onChange={handleTyping}
             />
@@ -128,7 +139,7 @@ const Profile = () => {
             <label className="password">Change password</label>
             <input
               type="password"
-              placeholder="Password"
+              placeholder="Update password"
               id="password"
               name="password"
               value={password}
