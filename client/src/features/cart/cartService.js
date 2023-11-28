@@ -6,20 +6,34 @@ const API_URL = "/api/cart/";
 const getCart = async () => {
   const user = JSON.parse(localStorage.getItem("user"));
 
-  const response = axios.create({
-    headers: {
-      Authorization: `Bearer ${user.token}`,
-    },
-  });
+  if (!user) {
+    return null; 
+  }
 
-  const res = await response.get(API_URL);
+  try {
+    const response = await axios.get(API_URL, {
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
 
-  return res.data;
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching cart:", error);
+    throw error; 
+  }
 };
+
 
 // Adding item to cart
 const addToCart = async (cartData) => {
   const user = JSON.parse(localStorage.getItem("user"));
+
+
+  if (!user) {
+    // throw new Error("User not available");
+    return null; 
+  }
 
   const response = axios.create({
     headers: {
@@ -48,17 +62,17 @@ const removeFromCart = async (cartData) => {
 };
 
 // Update single cart item
-const updatingCartSingle = async () => {
-  const response = await axios.put(API_URL + `updatingCartSingle`);
+// const updatingCartSingle = async () => {
+//   const response = await axios.put(API_URL + `updatingCartSingle`);
 
-  return response.data;
-};
+//   return response.data;
+// };
 
 const Service = {
   getCart,
   addToCart,
   removeFromCart,
-  updatingCartSingle,
+  // updatingCartSingle,
 };
 
 export default Service;
