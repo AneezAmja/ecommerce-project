@@ -2,6 +2,7 @@
 const asyncHandler = require("express-async-handler");
 const Products = require("../models/Products");
 const ProductDetail = require("../models/ProductDetail");
+const Cart = require("../models/Cart");
 const mongoose = require("mongoose");
 
 /**************************************************************
@@ -56,37 +57,62 @@ const getIndividualProduct = async (req, res) => {
 // @route  POST /api/products/purchase
 // TODO: @route  POST /api/products/purchase/:purchaseId
 // @access Private
-const purchaseProduct = async (req, res) => {
-  const { productId, quantity } = req.body;
+const purchaseProducts = async (req, res) => {
+  const purchaseItems = req.body; // array of { productId, quantity } objects
 
   const session = await mongoose.startSession();
 
   try {
     await session.withTransaction(async () => {
-      const product = await Products.findById(productId).session(session);
-      const productDetail = await ProductDetail.findById(
-        product.productDetail
-      ).session(session);
+      for (const purchaseItem of purchaseItems) {
+        const { productId, quantity } = purchaseItem;
 
-      if (!product || !productDetail) {
-        res.status(404);
-        throw new Error("Product not found");
+        const product = await Products.findById(productId).session(session);
+        const productDetail = await ProductDetail.findById(product.productDetail).session(session);
+
+        if (!product || !productDetail) {
+          res.status(404);
+          throw new Error(`Product with ID ${productId} not found`);
+        }
+
+        if (product.stockQuantity <= 0 || productDetail.stockQuantity <= 0) {
+          res.status(400);
+          throw new Error(`Empty stock for product with ID ${productId}`);
+        }
+
+        product.stockQuantity -= Number(quantity);
+        productDetail.stockQuantity -= Number(quantity);
+        await product.save();
+        await productDetail.save();
       }
 
-      if (product.stockQuantity <= 0 || productDetail.stockQuantity <= 0) {
-        res.status(400);
-        throw new Error("Empty stock!");
+      const userId = req.user.id;
+
+      if (!userId) {
+        res.status(401).json({ message: 'User not authenticated' });
+        return;
       }
 
-      product.stockQuantity -= Number(quantity);
-      productDetail.stockQuantity -= Number(quantity);
-      await product.save();
-      await productDetail.save();
-      res.status(200).json(product);
+      // Fetch the user's cart
+      const userCart = await Cart.findOne({ user: userId });
+
+      // Check if the user has a cart
+      if (!userCart) {
+        res.status(404).json({ message: 'User does not have a cart' });
+        return;
+      }
+
+      // Clear the user's cart
+      userCart.items = [];
+
+      // Save the updated cart
+      await userCart.save();
+
+      res.status(200).json({ message: 'Purchase successful and cart cleared' });
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Server Error" });
+    res.status(500).json({ message: 'Server Error' });
   } finally {
     session.endSession();
   }
@@ -117,6 +143,7 @@ const updateProduct = async (req, res) => {
       await product.save();
       await productDetail.save();
       res.status(200).json(product);
+      
     });
   } catch (error) {
     console.error(error);
@@ -129,6 +156,6 @@ const updateProduct = async (req, res) => {
 module.exports = {
   getProducts,
   getIndividualProduct,
-  purchaseProduct,
+  purchaseProducts,
   updateProduct,
 };
