@@ -4,13 +4,10 @@ const router = express.Router();
 const { protect } = require("../middleware/authMiddleware");
 
 // /api/products/
-router.route("/").get(getProducts)
-router.route("/:id").get(getIndividualProduct)
-// router.route("/purchase").post(purchaseProducts)
+router.get("/", getProducts);
+router.get("/:id", getIndividualProduct);
 router.post("/purchase", protect, purchaseProducts);
-
-router.route("/update-stock").post(updateProduct)
-
+router.post("/update-stock", purchaseProducts);
 
 
 module.exports = router
