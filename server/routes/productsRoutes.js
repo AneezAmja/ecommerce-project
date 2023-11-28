@@ -2,6 +2,7 @@ const express = require("express");
 const { getProducts, getIndividualProduct, purchaseProducts, updateProduct } = require("../controllers/productsController");
 const router = express.Router();
 const { protect } = require("../middleware/authMiddleware");
+const { protect } = require("../middleware/authMiddleware");
 
 // /api/products/
 router.route("/").get(getProducts)

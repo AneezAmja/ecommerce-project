@@ -5,7 +5,10 @@ import "./ProductDetail.scss";
 import Spinner from "../../components/spinner/Spinner";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
-import { getIndividualProduct } from "../../features/product/productSlice";
+import {
+  getIndividualProduct,
+  purchaseProduct,
+} from "../../features/product/productSlice";
 import { getUser } from "../../features/user/userSlice";
 import { addToCart, getCart } from "../../features/cart/cartSlice";
 
@@ -24,9 +27,11 @@ const ProductDetail = () => {
   useEffect(() => {
     dispatch(getUser());
     dispatch(getIndividualProduct(id));
+    dispatch(getUser());
+    dispatch(getIndividualProduct(id));
 
     if (isError) {
-      toast.error(message);
+      toast.error("Please register or login before making a purchase!");
     }
   }, [isError, message, dispatch, id]);
 
@@ -39,6 +44,9 @@ const ProductDetail = () => {
     dispatch(addToCart(cartData)).then(() => dispatch(getCart()));
     console.log("added to basket");
   };
+    dispatch(addToCart(cartData)).then(() => dispatch(getCart()));
+    console.log("added to basket");
+  };
 
   if (isLoading) {
     return <Spinner />;
@@ -47,6 +55,13 @@ const ProductDetail = () => {
   return (
     <div className="product-detail-container">
       <div className="product-detail">
+        <div className="product-detail__image-container" key={product?._id}>
+          <img
+            src={product?.imageURL}
+            alt={product?.name}
+            className="product-detail__image"
+          />
+        </div>
         <div className="product-detail__image-container" key={product?._id}>
           <img
             src={product?.imageURL}
