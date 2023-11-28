@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "./Products.css";
+import "./Products.scss";
 import Spinner from "../../components/spinner/Spinner";
 import { getUser } from "../../features/user/userSlice";
 import { getProducts } from "../../features/product/productSlice";
