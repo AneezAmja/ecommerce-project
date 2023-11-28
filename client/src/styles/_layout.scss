@@ -1,0 +1,31 @@
+@import '_utilities.scss';
+
+.container{
+    margin: auto;
+    max-width: 100%;
+    padding: 0 40px;
+    
+    @include breakpoint(s){
+        max-width: 540px;
+    }
+    
+    /* Medium devices (tablets) */
+    @include breakpoint(m){
+        max-width: 720px;
+    }
+
+    /* Large devices (tablets) */
+    @include breakpoint(l){
+        max-width: 960px;
+    }
+
+    /* XLarge devices (tablets) */
+    @include breakpoint(xl){
+        max-width: 1140px;
+    }
+
+    /* XXLarge devices (tablets) */
+    @include breakpoint(xxl){
+        max-width: 1320px;
+    }
+}

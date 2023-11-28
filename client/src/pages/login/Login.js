@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import Spinner from "../../components/spinner/Spinner";
 
 import "react-toastify/dist/ReactToastify.css";
-import "./Login.css";
+import "./Login.scss";
 
 const Login = () => {
   const [formData, setFormData] = useState({

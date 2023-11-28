@@ -49,12 +49,11 @@ export const getIndividualProduct = createAsyncThunk(
   }
 );
 
-// purchase product
-export const purchaseProduct = createAsyncThunk(
-  "product/purchaseProduct",
-  async (productInfo, thunkAPI) => {
+export const purchaseProducts = createAsyncThunk(
+  "product/purchaseProducts",
+  async (productData, thunkAPI) => {
     try {
-      return await productService.purchaseProduct(productInfo);
+      return await productService.purchaseProducts(productData);
     } catch (error) {
         console.log(error)
       const message =
@@ -110,15 +109,15 @@ export const productSlice = createSlice({
         state.message = action.payload;
         state.product = null;
       })
-      .addCase(purchaseProduct.pending, (state) => {
+      .addCase(purchaseProducts.pending, (state) => {
         state.isLoading = true;
       })
-      .addCase(purchaseProduct.fulfilled, (state, action) => {
+      .addCase(purchaseProducts.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
         state.product = action.payload;
       })
-      .addCase(purchaseProduct.rejected, (state, action) => {
+      .addCase(purchaseProducts.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;

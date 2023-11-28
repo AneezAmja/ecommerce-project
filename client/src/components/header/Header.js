@@ -1,10 +1,10 @@
 import React from "react";
-import "./Header.css";
+import "./Header.scss";
 import logoImage from "../../resources/images/Luffys-jolly-roger.png";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { FaShoppingCart } from "react-icons/fa";
 import ProfileIcon from "../profileIcon/ProfileIcon";
+import CartIcon from "../cartIcon/CartIcon";
 
 function Header() {
 
@@ -23,6 +23,9 @@ function Header() {
         </div>
       </div>
       <div className="header__right">
+        <Link className="shopping-cart__link" to="/cart">
+          <CartIcon />
+        </Link>
         {user ? (
           <div>
             <ProfileIcon user={user} />

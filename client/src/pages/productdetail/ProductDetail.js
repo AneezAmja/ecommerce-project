@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import "./ProductDetail.css";
+import "./ProductDetail.scss";
 import Spinner from "../../components/spinner/Spinner";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,14 +10,16 @@ import {
   purchaseProduct,
 } from "../../features/product/productSlice";
 import { getUser } from "../../features/user/userSlice";
+import { addToCart, getCart } from "../../features/cart/cartSlice";
 
 const ProductDetail = () => {
   const { product, isError, isLoading, message } = useSelector(
     (state) => state.products
   );
 
-  const [quantity, setQuantity] = useState(0);
+  const user = JSON.parse(localStorage.getItem("user"));
 
+  const [quantity, setQuantity] = useState(0);
   const { id } = useParams();
 
   const dispatch = useDispatch();
@@ -25,22 +27,24 @@ const ProductDetail = () => {
   useEffect(() => {
     dispatch(getUser());
     dispatch(getIndividualProduct(id));
+    dispatch(getUser());
+    dispatch(getIndividualProduct(id));
 
     if (isError) {
-      toast.error('Please register or login before making a purchase!');
+      toast.error("Please register or login before making a purchase!");
     }
-  }, [isError, message, dispatch]);
+  }, [isError, message, dispatch, id]);
 
-  const purchaseAmmount = () => {
-    const productInfo = {
-      productId: id,
+  const addToBasket = () => {
+    const cartData = {
+      productId: product._id,
       quantity,
     };
 
-    dispatch(purchaseProduct(productInfo)).then(
-      dispatch(getIndividualProduct(id))
-    );
-
+    dispatch(addToCart(cartData)).then(() => dispatch(getCart()));
+    console.log("added to basket");
+  };
+    dispatch(addToCart(cartData)).then(() => dispatch(getCart()));
     console.log("added to basket");
   };
 
@@ -51,6 +55,13 @@ const ProductDetail = () => {
   return (
     <div className="product-detail-container">
       <div className="product-detail">
+        <div className="product-detail__image-container" key={product?._id}>
+          <img
+            src={product?.imageURL}
+            alt={product?.name}
+            className="product-detail__image"
+          />
+        </div>
         <div className="product-detail__image-container" key={product?._id}>
           <img
             src={product?.imageURL}
@@ -84,12 +95,18 @@ const ProductDetail = () => {
               />
             </div>
 
-            <button
-              onClick={purchaseAmmount}
-              className="product-detail-buy-container__buy"
-            >
-              Purchase ammount
-            </button>
+            {user ? (
+              <button
+                onClick={addToBasket}
+                className="product-detail-buy-container__buy"
+              >
+                Add to basket
+              </button>
+            ) : (
+              <button className="product-detail-buy-container__buy" disabled>
+                Login to add to basket
+              </button>
+            )}
           </div>
         </div>
       </div>

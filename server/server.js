@@ -19,6 +19,7 @@ app.use('/uploads/images/avatars', express.static(path.join(__dirname, 'public',
 
 app.use("/api/products", require("./routes/productsRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/cart", require("./routes/cartRoutes"));
 
 
 app.listen(port, () => {
