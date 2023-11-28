@@ -1,5 +1,5 @@
 import React from "react";
-import "./Header.css";
+import "./Header.scss";
 import logoImage from "../../resources/images/Luffys-jolly-roger.png";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";

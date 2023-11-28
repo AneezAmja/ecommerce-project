@@ -1,7 +1,13 @@
+@import '../../styles/utilities'; 
+
 .header {
   display: flex;
-  padding: 20px 40px 60px 40px;
+  padding: 20px 20px 0 20px;
   color: #f1efef;
+  
+  @include breakpoint(l){
+    padding: 20px 40px 0 40px;
+  }
 }
 
 .header__left{
@@ -19,12 +25,20 @@
 }
 
 .header__logo img {
-  max-width: 100px;
+  max-width: 50px;
+  
+  @include breakpoint(l){
+    max-width: 100px;
+  }
 }
 
 .header__title h1 {
-  font-size: 24px; 
-  margin: 0; 
+  font-size: 17px;
+  margin: 0;
+  
+  @include breakpoint(l){
+    font-size: 24px; 
+  }
 }
 
 .header__auth-buttons {
@@ -38,10 +52,21 @@
 .header__sign-up-button,
 .header__login-button {
   border: 1px solid #9090ffba;
-  padding: 10px 30px;
+  padding: 9px 0px;
+  width: 70px;
   margin-left: 10px;
   cursor: pointer;
-  border-radius: 12px;
+  border-radius: 7px;
+  font-size: 9px;
+  text-align: center;
+  
+  @include breakpoint(l){
+    padding: 10px 30px;
+    width: unset;
+    font-size: unset;
+    border-radius: 12px;
+  }
+
 }
 
 
