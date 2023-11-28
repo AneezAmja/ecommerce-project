@@ -19,7 +19,6 @@ const productDetails = [
     stockQuantity: 15,
     createdAt: new Date('2023-01-05'),
   },
-  // Add 13 more product details here...
   {
     _id: new mongoose.Types.ObjectId(),
     name: 'Product 3 Detail',
