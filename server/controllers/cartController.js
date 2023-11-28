@@ -2,6 +2,7 @@
 const asyncHandler = require("express-async-handler");
 const Cart = require("../models/Cart");
 const ProductDetail = require("../models/ProductDetail");
+const Products = require("../models/Products");
 const mongoose = require("mongoose");
 
 /****************************************************************
@@ -23,7 +24,7 @@ const getCart = asyncHandler(async (req, res) => {
 
   // const cart = await Cart.find();
 
-  const userId = req.user.id; // Replace with the actual way you obtain the user's ID
+  const userId = req.user.id; 
 
   const cart = await Cart.find({ user: userId });
 
@@ -35,28 +36,19 @@ const getCart = asyncHandler(async (req, res) => {
   res.status(200).json(cart);
 });
 
-// @desc   Add to cart
-// @route  POST /api/addToCart
-// @access Private
 const addToCart = asyncHandler(async (req, res) => {
   try {
     const { productId, quantity } = req.body;
 
-    const product = await ProductDetail.findById(productId);
+    const product = await Products.findById(productId);
 
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
 
-    if (product.stockQuantity < quantity) {
-      return res.status(400).json({ message: "Insufficient stock" });
-    }
+    const userId = req.user.id;
 
-    const userId = req.user.id; 
-    
-    // let cartItem = await Cart.findOne({ productId: product._id });
     let cartItem = await Cart.findOne({ user: userId });
-
 
     if (!cartItem) {
       cartItem = new Cart({
@@ -65,7 +57,16 @@ const addToCart = asyncHandler(async (req, res) => {
       });
     }
 
-    const existingItem = cartItem.items.find((item) => item.productId.toString() === product._id.toString());
+    const existingItem = cartItem.items.find(
+      (item) => item.productId.toString() === product._id.toString()
+    );
+
+    // Calculate total quantity including the current request
+    const totalQuantity = (existingItem ? existingItem.quantity : 0) + Number(quantity);
+
+    if (totalQuantity > product.stockQuantity) {
+      return res.status(400).json({ message: "Total quantity exceeds stock" });
+    }
 
     if (existingItem) {
       existingItem.quantity += Number(quantity);
@@ -88,6 +89,7 @@ const addToCart = asyncHandler(async (req, res) => {
     res.status(500).json({ message: "Server Error" });
   }
 });
+
 
 // @desc   Remove from cart
 // @route  POST /api/removeFromCart
@@ -149,40 +151,39 @@ const removeFromCart = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc   Remove from cart
-// @route  PUT /api/updatingCartSingle
-// @access Public
-const updatingCartSingle = asyncHandler(async (req, res) => {
-  try {
-    const { productId } = req.body;
+// // @desc   Remove from cart
+// // @route  PUT /api/updatingCartSingle
+// // @access Public
+// const updatingCartSingle = asyncHandler(async (req, res) => {
+//   try {
+//     const { productId } = req.body;
 
-    const product = await ProductDetail.findById(productId);
+//     const product = await ProductDetail.findById(productId);
 
-    if (!product) {
-      return res.status(404).json({ message: "Product not found" });
-    }
+//     if (!product) {
+//       return res.status(404).json({ message: "Product not found" });
+//     }
 
-    if (product.stockQuantity < 0) {
-      return res.status(400).json({ message: "Insufficient stock" });
-    }
+//     if (product.stockQuantity < 0) {
+//       return res.status(400).json({ message: "Insufficient stock" });
+//     }
 
-    let cartItem = await Cart.findOne({ productId: product._id });
+//     let cartItem = await Cart.findOne({ productId: product._id });
 
-    cartItem.quantity += 1
+//     cartItem.quantity += 1
     
 
-    await cartItem.save();
+//     await cartItem.save();
 
-    res.status(200).json(cartItem);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Server Error" });
-  }
-});
+//     res.status(200).json(cartItem);
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ message: "Server Error" });
+//   }
+// });
 
 module.exports = {
   getCart,
   addToCart,
   removeFromCart,
-  updatingCartSingle,
 };
