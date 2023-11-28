@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import cartService from "./cartService";
 
-
 const initialState = {
   cart: [],
   isError: null,
@@ -11,23 +10,18 @@ const initialState = {
 };
 
 // Get all products
-export const getCart = createAsyncThunk(
-  "cart/getCart",
-  async (thunkAPI) => {
-    try {
-      return await cartService.getCart();
-    } catch (error) {
-        console.log(error)
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-      return thunkAPI.rejectWithValue(message);
-    }
+export const getCart = createAsyncThunk("cart/getCart", async (thunkAPI) => {
+  try {
+    return await cartService.getCart();
+  } catch (error) {
+    console.log(error);
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+    return thunkAPI.rejectWithValue(message);
   }
-);
+});
 
 //
 export const addToCart = createAsyncThunk(
@@ -36,7 +30,7 @@ export const addToCart = createAsyncThunk(
     try {
       return await cartService.addToCart(cartData);
     } catch (error) {
-        console.log(error)
+      console.log(error);
       const message =
         (error.response &&
           error.response.data &&
@@ -54,7 +48,7 @@ export const removeFromCart = createAsyncThunk(
     try {
       return await cartService.removeFromCart(cartData);
     } catch (error) {
-        console.log(error)
+      console.log(error);
       const message =
         (error.response &&
           error.response.data &&
@@ -65,25 +59,6 @@ export const removeFromCart = createAsyncThunk(
     }
   }
 );
-
-export const updatingCartSingle = createAsyncThunk(
-  "cart/updatingCartSingle",
-  async (thunkAPI) => {
-    try {
-      return await cartService.updatingCartSingle();
-    } catch (error) {
-        console.log(error)
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
-
 
 export const cartSlice = createSlice({
   name: "cart",
@@ -139,23 +114,7 @@ export const cartSlice = createSlice({
         state.isError = true;
         state.message = action.payload;
         state.cart = null;
-      })
-      .addCase(updatingCartSingle.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(updatingCartSingle.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.cart = action.payload;
-      })
-      .addCase(updatingCartSingle.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-        state.cart = null;
-      })
-
-      
+      });
   },
 });
 

@@ -5,8 +5,6 @@ import { getCart } from "../../features/cart/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 
-import Spinner from "../../components/spinner/Spinner";
-
 const Cart = () => {
   const dispatch = useDispatch();
 

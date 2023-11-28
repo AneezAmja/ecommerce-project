@@ -49,6 +49,7 @@ export const getIndividualProduct = createAsyncThunk(
   }
 );
 
+// Purchase multiple products
 export const purchaseProducts = createAsyncThunk(
   "product/purchaseProducts",
   async (productData, thunkAPI) => {

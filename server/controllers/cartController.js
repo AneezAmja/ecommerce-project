@@ -151,37 +151,6 @@ const removeFromCart = asyncHandler(async (req, res) => {
   }
 });
 
-// // @desc   Remove from cart
-// // @route  PUT /api/updatingCartSingle
-// // @access Public
-// const updatingCartSingle = asyncHandler(async (req, res) => {
-//   try {
-//     const { productId } = req.body;
-
-//     const product = await ProductDetail.findById(productId);
-
-//     if (!product) {
-//       return res.status(404).json({ message: "Product not found" });
-//     }
-
-//     if (product.stockQuantity < 0) {
-//       return res.status(400).json({ message: "Insufficient stock" });
-//     }
-
-//     let cartItem = await Cart.findOne({ productId: product._id });
-
-//     cartItem.quantity += 1
-    
-
-//     await cartItem.save();
-
-//     res.status(200).json(cartItem);
-//   } catch (error) {
-//     console.error(error);
-//     res.status(500).json({ message: "Server Error" });
-//   }
-// });
-
 module.exports = {
   getCart,
   addToCart,

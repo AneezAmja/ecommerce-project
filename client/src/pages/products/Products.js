@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Products.scss";
 import Spinner from "../../components/spinner/Spinner";
@@ -9,8 +8,6 @@ import { useSelector, useDispatch } from "react-redux";
 
 
 const Products = () => {
-  // const [products, setProducts] = useState([]);
-  // const [loading, setLoading] = useState(true);
 
   const dispatch = useDispatch();
 

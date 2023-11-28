@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./ProductDetail.scss";
 import Spinner from "../../components/spinner/Spinner";
@@ -7,7 +6,6 @@ import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
 import {
   getIndividualProduct,
-  purchaseProduct,
 } from "../../features/product/productSlice";
 import { getUser } from "../../features/user/userSlice";
 import { addToCart, getCart } from "../../features/cart/cartSlice";
@@ -27,8 +25,6 @@ const ProductDetail = () => {
   useEffect(() => {
     dispatch(getUser());
     dispatch(getIndividualProduct(id));
-    // dispatch(getUser());
-    // dispatch(getIndividualProduct(id));
 
     if (isError) {
       toast.error("Please register or login before making a purchase!");

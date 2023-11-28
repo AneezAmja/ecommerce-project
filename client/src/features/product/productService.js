@@ -16,7 +16,7 @@ const getIndividualProduct = async (id) => {
   return response.data;
 };
 
-
+// Purchase multiple products
 const purchaseProducts = async (productData) => {
 
   const user = JSON.parse(localStorage.getItem("user"));

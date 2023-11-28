@@ -61,18 +61,10 @@ const removeFromCart = async (cartData) => {
   return res.data;
 };
 
-// Update single cart item
-// const updatingCartSingle = async () => {
-//   const response = await axios.put(API_URL + `updatingCartSingle`);
-
-//   return response.data;
-// };
-
 const Service = {
   getCart,
   addToCart,
   removeFromCart,
-  // updatingCartSingle,
 };
 
 export default Service;

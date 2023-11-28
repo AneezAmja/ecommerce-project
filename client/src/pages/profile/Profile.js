@@ -13,13 +13,11 @@ import { toast } from "react-toastify";
 
 const Profile = () => {
   const dispatch = useDispatch();
-  // const { user } = useSelector((state) => state.user);
 
   const { user, isError, isSuccess, isLoading, message } = useSelector(
     (state) => state.user
   );
 
-  // const [email, setEmail] = useState(user.email);
 
   const [formData, setFormData] = useState({
     email: user ? user.email : "",

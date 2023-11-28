@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./CartTable.scss";
-import axios from "axios";
 import Spinner from "../../components/spinner/Spinner";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
@@ -26,16 +25,11 @@ const CartTable = () => {
     }
   }, [isError, message, dispatch]);
 
-  // console.log(cart[0]?.items[0].productId);
-  // console.log(cart[0]?.items?.map((cartItem) => {console.log(cartItem)}));
-
-
   const handleRemoveProduct = () => {
     console.log("hey")
 
     const cartData = {
       productId: cart[0]?.items[0]?.productId,
-      // productId: "652061aefa5cfd81ca8406b1",
     }
 
 
