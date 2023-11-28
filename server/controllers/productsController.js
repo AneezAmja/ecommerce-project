@@ -62,13 +62,25 @@ const purchaseProducts = async (req, res) => {
 
   const session = await mongoose.startSession();
 
+  // Check if purchaseItems is an array for error handeling
+  if (!Array.isArray(purchaseItems)) {
+    res
+      .status(400)
+      .json({
+        message: "Invalid request. Expected an array of purchase items.",
+      });
+    return;
+  }
+
   try {
     await session.withTransaction(async () => {
       for (const purchaseItem of purchaseItems) {
         const { productId, quantity } = purchaseItem;
 
         const product = await Products.findById(productId).session(session);
-        const productDetail = await ProductDetail.findById(product.productDetail).session(session);
+        const productDetail = await ProductDetail.findById(
+          product.productDetail
+        ).session(session);
 
         if (!product || !productDetail) {
           res.status(404);
@@ -89,7 +101,7 @@ const purchaseProducts = async (req, res) => {
       const userId = req.user.id;
 
       if (!userId) {
-        res.status(401).json({ message: 'User not authenticated' });
+        res.status(401).json({ message: "User not authenticated" });
         return;
       }
 
@@ -98,7 +110,7 @@ const purchaseProducts = async (req, res) => {
 
       // Check if the user has a cart
       if (!userCart) {
-        res.status(404).json({ message: 'User does not have a cart' });
+        res.status(404).json({ message: "User does not have a cart" });
         return;
       }
 
@@ -108,11 +120,11 @@ const purchaseProducts = async (req, res) => {
       // Save the updated cart
       await userCart.save();
 
-      res.status(200).json({ message: 'Purchase successful and cart cleared' });
+      res.status(200).json({ message: "Purchase successful and cart cleared" });
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Server Error' });
+    res.status(500).json({ message: "Server Error" });
   } finally {
     session.endSession();
   }
@@ -143,7 +155,6 @@ const updateProduct = async (req, res) => {
       await product.save();
       await productDetail.save();
       res.status(200).json(product);
-      
     });
   } catch (error) {
     console.error(error);
