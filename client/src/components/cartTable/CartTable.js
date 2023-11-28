@@ -1,12 +1,11 @@
 import React, { useEffect } from "react";
-import "./CartTable.css";
+import "./CartTable.scss";
 import axios from "axios";
 import Spinner from "../../components/spinner/Spinner";
 import { toast } from "react-toastify";
 import { useSelector, useDispatch } from "react-redux";
-import { getIndividualProduct } from "../../features/product/productSlice";
 import { getUser } from "../../features/user/userSlice";
-import { addToCart, getCart, removeFromCart } from "../../features/cart/cartSlice";
+import {  getCart, removeFromCart } from "../../features/cart/cartSlice";
 import { FaTimes } from "react-icons/fa";
 
 
@@ -52,18 +51,18 @@ const CartTable = () => {
     <table className="cart-table">
       <thead>
         <tr>
-          <th>Item</th>
-          <th>Unit Price</th>
-          <th>Quantity</th>
-          <th>Final Price</th>
-          <th>Remove Product</th>
+          <th className="item-header">Item</th>
+          <th className="unit-price-header">Unit Price</th>
+          <th className="quantity-header">Quantity</th>
+          <th className="final-price-header">Final Price</th>
+          <th className="remove-product-header">Remove Product</th>
         </tr>
       </thead>
       <tbody>
         {cart && cart[0]?.items?.map((cartItem) => {
           return (
             <tr key={cartItem._id} className="cart-table__row">
-              <td>
+              <td className="cart__product-item">
                 <div className="cart__item">
                   <img
                     src={cartItem.productImage}
@@ -73,10 +72,10 @@ const CartTable = () => {
                   <p className="cart-table__name">{cartItem.productName} </p>
                 </div>
               </td>
-              <td>{`£${cartItem.productPrice}`}</td>
-              <td>{cartItem.quantity}</td>
-              <td>{`£${cartItem.productPrice * cartItem.quantity} `}</td>
-              <td>
+              <td className="cart__price">{`£${cartItem.productPrice}`}</td>
+              <td className="cart__quantity">{cartItem.quantity}</td>
+              <td className="cart__final-price">{`£${cartItem.productPrice * cartItem.quantity} `}</td>
+              <td className="cart__remove-item">
                   <div className="cart-remove" onClick={handleRemoveProduct}>
                     <FaTimes />
 
