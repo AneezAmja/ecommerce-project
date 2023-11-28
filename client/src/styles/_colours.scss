@@ -1,0 +1,17 @@
+//colours
+$colour-bg-purple: #4A3AFF;
+$colour-teal: #41DCC8;
+$colour-black: #1A1B1F;
+$colour-mellow-purple: #364F9B;
+$colour-purple: #1E3C8B;
+$colour-dark-purple: #232744;
+
+:root {
+  // bind scss colour vars to css vars
+  --colour-bg-purple: #{$colour-bg-purple};
+  --colour-teal: #{$colour-teal};
+  --colour-black: #{$colour-black};
+  --colour-mellow-purple: #{$colour-mellow-purple};
+  --colour-dark-purple: #{$colour-dark-purple};
+  --colour-purple: #{$colour-purple};
+}
