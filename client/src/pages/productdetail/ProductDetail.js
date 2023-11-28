@@ -27,8 +27,8 @@ const ProductDetail = () => {
   useEffect(() => {
     dispatch(getUser());
     dispatch(getIndividualProduct(id));
-    dispatch(getUser());
-    dispatch(getIndividualProduct(id));
+    // dispatch(getUser());
+    // dispatch(getIndividualProduct(id));
 
     if (isError) {
       toast.error("Please register or login before making a purchase!");
@@ -44,9 +44,6 @@ const ProductDetail = () => {
     dispatch(addToCart(cartData)).then(() => dispatch(getCart()));
     console.log("added to basket");
   };
-    dispatch(addToCart(cartData)).then(() => dispatch(getCart()));
-    console.log("added to basket");
-  };
 
   if (isLoading) {
     return <Spinner />;
@@ -55,13 +52,6 @@ const ProductDetail = () => {
   return (
     <div className="product-detail-container">
       <div className="product-detail">
-        <div className="product-detail__image-container" key={product?._id}>
-          <img
-            src={product?.imageURL}
-            alt={product?.name}
-            className="product-detail__image"
-          />
-        </div>
         <div className="product-detail__image-container" key={product?._id}>
           <img
             src={product?.imageURL}
