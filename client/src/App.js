@@ -23,8 +23,8 @@ function App() {
           <Routes>
             <Route path="/products" element={<><Header /> <Home /> </>} />
             <Route path="/products/:id" element={<> <Header /><ProductDetail /> </>} />
-            <Route path="/register" element={<Register />} />
-            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<><Header /><Register /> </>} />
+            <Route path="/login" element={<><Header /><Login /> </>} />
             <Route path="/profile" element={<> <Header /><Profile /> </>} />    {/* TODO: Need to make protected */}
             <Route path="/cart" element={<> <Header /><Cart /> </>} />    
             <Route path="*" element={<Navigate replace to={"/products"} />} />
