@@ -83,12 +83,31 @@ export const uploadAvatar = createAsyncThunk(
     }
   }
 );
+
 // Update the User email
 export const updateUserEmail = createAsyncThunk(
   "user/updateUserEmail",
   async (user, thunkAPI) => {
     try {
       return await userService.updateUserEmail(user);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+// Update the User password
+export const updateUserPassword = createAsyncThunk(
+  "user/updateUserPassword",
+  async (user, thunkAPI) => {
+    try {
+      return await userService.updateUserPassword(user);
     } catch (error) {
       const message =
         (error.response &&
@@ -172,6 +191,20 @@ export const userSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(updateUserEmail.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        state.user = null;
+      })
+      .addCase(updateUserPassword.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateUserPassword.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.user = action.payload;
+      })
+      .addCase(updateUserPassword.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
