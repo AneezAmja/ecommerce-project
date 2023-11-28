@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout, reset } from "../../features/user/userSlice";
 import { FaSignOutAlt, FaRegUser } from "react-icons/fa";
-import "./ProfileIcon.css";
+import "./ProfileIcon.scss";
 
 const ProfileIcon = ({ user }) => {
   const [open, setOpen] = useState(false);

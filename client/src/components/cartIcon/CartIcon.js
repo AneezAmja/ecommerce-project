@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { FaShoppingCart } from "react-icons/fa";
-import "./CartIcon.css";
+import "./CartIcon.scss";
 import { getCart } from "../../features/cart/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";

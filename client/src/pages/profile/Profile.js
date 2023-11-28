@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import "./Profile.css";
+import "./Profile.scss";
 import {
   getUser,
   uploadAvatar,
