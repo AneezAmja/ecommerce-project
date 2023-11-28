@@ -117,7 +117,7 @@ const updateUserEmail = asyncHandler(async (req, res) => {
   user.email = updatedEmail;
   await user.save();
 
-  res.status(201).json({
+  res.status(200).json({
     email: "Email has been updated to: " + updatedEmail,
   });
 });
@@ -140,10 +140,11 @@ const updateUserPassword = asyncHandler(async (req, res) => {
     throw new Error("User does not exist");
   }
 
-  user.password = updatedPassword;
+  const salt = await bcrypt.genSalt(10);
+  user.password = await bcrypt.hash(updatedPassword, salt);
   await user.save();
 
-  res.status(201).json({
+  res.status(200).json({
     password: updatedPassword,
   });
 });
