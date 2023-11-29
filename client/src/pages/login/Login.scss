@@ -5,45 +5,76 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: calc(100vh - 124px);
+    height: auto;
     color: #fff;
     padding-top: 60px;
+
+    @include breakpoint(s) {
+        padding-top: 0;
+        height: calc(100vh - 74px);
+    }
+    
+    @include breakpoint(l) {
+        height: calc(100vh - 124px);
+    }
+
 }
 
 .login-container__form{
-    width: 95%;
+    width: 85%;
     height: 95%;
     display: flex;
     flex-direction: column-reverse;
-    justify-content: flex-end;
+    // justify-content: flex-end;
     box-shadow: -10px 9px 20px rgba(0, 0, 0, 0.3);
     border-bottom-left-radius: 4%;
     border-top-left-radius: 4%;
     border-top-right-radius: 4%;
     border-bottom-right-radius: 4%;
 
-    @include breakpoint(l) {
-        width: 65%;
-        height: 90%;
+    @include breakpoint(s) {
+        width: 85%;
+        height: 60%;
         flex-direction: row;
-        justify-content: unset;
+        // justify-content: unset;
     }
+
+    @include breakpoint(m) {
+        width: 85%;
+        height: 80%;
+    }
+    
+    @include breakpoint(l) {
+        width: 70%;
+        height: 90%;
+    }
+
+    @include breakpoint(xxl) {
+        width: 50%;
+        height: 90%;
+    }
+
 }
 
 .login-container__form--left{
     width: 100%;
-    height: 50%;
+    height: 50%;    
 
     background:linear-gradient(to right bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2));
-    border-bottom-left-radius: 4%;
-    border-top-left-radius: 4%;
+    border-bottom-left-radius: 14px;
+    border-bottom-right-radius: 14px;
+    // border-top-left-radius: 4%;
+
     
-    
-    @include breakpoint(l) {
+    @include breakpoint(s) {
         width: 40%;
-        height: 100%;
         backdrop-filter: blur(2rem);
+        border-top-left-radius: 14px;
+        border-bottom-left-radius: 14px;
+        height: 100%;
+        border-bottom-right-radius: unset;
     }
+    
 }
 
 .login-image{
@@ -54,8 +85,13 @@
     /* background: linear-gradient(to right bottom, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2)), url('../../images/login-bg.jpg'); */
     background-size: cover;
     background-repeat: no-repeat;
-    border-top-right-radius: 4%;
-    border-bottom-right-radius: 4%;
+    border-top-right-radius: 14px;
+    border-top-left-radius: 14px;
+    
+    
+    @include breakpoint(s) {
+        border-bottom-right-radius: 14px;
+    }
 
 }
 
@@ -70,35 +106,28 @@
 
 .login-container__form--right{
     width: 100%;
-    height: 50%;
+    height: 200px;
 
 
-    @include breakpoint(l) {
+    @include breakpoint(s) {
         width: 60%;
+        // backdrop-filter: blur(2rem);
+        border-top-right-radius: 14px;
+        border-bottom-right-radius: 14px;
         height: 100%;
+        border-bottom-left-radius: unset;
+
     }
+
+    // @include breakpoint(l) {
+    //     width: 60%;
+    //     height: 100%;
+    // }
 }
 
-.home-link{
-    display: flex;
-    justify-content: flex-end;
-    position: relative;
-    right: 40px;
-    top: 20px;
-    font-family: 'Inter-Regular';
-    font-size: 12px;
-}
-
-.home-link::before{
-    content: '←';
-    display: block;
-    position: relative;
-    right: 4px;
-}
 
 .login-button{
     text-align: center;
-    /* background: #4300ff8f; */
     background: #7070cc;
     color: #f0f0f0;
     border-radius: 8px;
