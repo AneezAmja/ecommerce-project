@@ -41,6 +41,9 @@ const Profile = () => {
     dispatch(uploadAvatar(imageFormData)).then(() => {
       dispatch(getUser());
     });
+
+    toast.success("Profile avatar updated successfully.");
+
   };
 
   useEffect(() => {
