@@ -35,11 +35,15 @@ body {
   .form{
     display: flex;
     flex-direction: column;
-    padding: 20px 30px;
+    padding: 20px 0;
     height: 100%;
     
-    @include breakpoint(l){
-      padding: 100px;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+    
+    @include breakpoint(s){
+      padding: 0;
     }
   }
   
