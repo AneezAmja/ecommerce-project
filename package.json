@@ -12,14 +12,14 @@
     "sass": "^1.69.5"
   },
   "scripts": {
-    "start": "nodemon server/server.js",
-    "server": "nodemon server/server.js",
+    "start": "nodemon server/index.js",
+    "server": "nodemon server/index.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "name": "server",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
   "author": "",
   "license": "ISC",
   "description": "",
