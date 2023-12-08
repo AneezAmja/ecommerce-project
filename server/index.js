@@ -9,17 +9,12 @@ const cors = require('cors');
 connectDB()
 const app = express();
 
-const corsOptions = {
-  origin: 'https://ecommerce-project-client-rho.vercel.app/',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  optionsSuccessStatus: 204,
-};
+
 
 //MIDDLEWARE
 app.use(express.json())
 app.use(express.urlencoded({extended: false}))
-app.use(cors(corsOptions));
+app.use(cors());
 app.use('/assets', express.static(path.join(__dirname, 'data', 'assets')));
 app.use('/uploads/images/avatars', express.static(path.join(__dirname, 'public', 'images', 'avatars')));
 
