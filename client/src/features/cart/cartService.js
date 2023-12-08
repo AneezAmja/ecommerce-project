@@ -1,8 +1,12 @@
 import axios from "axios";
 
+/*
 const apiURL = process.env.REACT_APP_API_URL;
 
 const API_URL = `${apiURL}/api/cart/`;
+*/
+
+const API_URL = "/api/cart/";
 
 // Get all Cart Items
 const getCart = async () => {
