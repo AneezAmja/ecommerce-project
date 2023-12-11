@@ -5,7 +5,7 @@ import {
   getUser,
   uploadAvatar,
   updateUserEmail,
-  updateUserPassword
+  // updateUserPassword
 } from "../../features/user/userSlice";
 import { FaUpload } from "react-icons/fa";
 import Spinner from "../../components/spinner/Spinner";
@@ -73,11 +73,11 @@ const Profile = () => {
         });
       }
 
-      if (password) {
-        dispatch(updateUserPassword({ updatedPassword: password })).then(() => {
-          dispatch(getUser());
-        });
-      }
+      // if (password) {
+      //   dispatch(updateUserPassword({ updatedPassword: password })).then(() => {
+      //     dispatch(getUser());
+      //   });
+      // }
 
 
       toast.success("Credentials updated successfully.");

@@ -5,7 +5,7 @@ const {
   loginUser,
   getUser,
   updateUserEmail,
-  updateUserPassword,
+  // updateUserPassword,
   uploadUserAvatar,
 } = require("../controllers/userController");
 const { protect } = require("../middleware/authMiddleware");
@@ -15,7 +15,7 @@ const upload  = require("../middleware/upload");
 router.post("/", registerUser);
 router.post("/login", loginUser);
 router.put("/update-email", protect, updateUserEmail);
-router.put("/update-password", protect, updateUserPassword);
+// router.put("/update-password", protect, updateUserPassword);
 
 router.post("/upload-avatar", protect, upload.single('avatar'), uploadUserAvatar);
 

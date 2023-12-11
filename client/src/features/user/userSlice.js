@@ -103,22 +103,22 @@ export const updateUserEmail = createAsyncThunk(
 );
 
 // Update the User password
-export const updateUserPassword = createAsyncThunk(
-  "user/updateUserPassword",
-  async (user, thunkAPI) => {
-    try {
-      return await userService.updateUserPassword(user);
-    } catch (error) {
-      const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-      return thunkAPI.rejectWithValue(message);
-    }
-  }
-);
+// export const updateUserPassword = createAsyncThunk(
+//   "user/updateUserPassword",
+//   async (user, thunkAPI) => {
+//     try {
+//       return await userService.updateUserPassword(user);
+//     } catch (error) {
+//       const message =
+//         (error.response &&
+//           error.response.data &&
+//           error.response.data.message) ||
+//         error.message ||
+//         error.toString();
+//       return thunkAPI.rejectWithValue(message);
+//     }
+//   }
+// );
 
 export const logout = createAsyncThunk("user/logout", async () => {
   await userService.logout();
@@ -196,20 +196,20 @@ export const userSlice = createSlice({
         state.message = action.payload;
         state.user = null;
       })
-      .addCase(updateUserPassword.pending, (state) => {
-        state.isLoading = true;
-      })
-      .addCase(updateUserPassword.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.isSuccess = true;
-        state.user = action.payload;
-      })
-      .addCase(updateUserPassword.rejected, (state, action) => {
-        state.isLoading = false;
-        state.isError = true;
-        state.message = action.payload;
-        state.user = null;
-      })
+      // .addCase(updateUserPassword.pending, (state) => {
+      //   state.isLoading = true;
+      // })
+      // .addCase(updateUserPassword.fulfilled, (state, action) => {
+      //   state.isLoading = false;
+      //   state.isSuccess = true;
+      //   state.user = action.payload;
+      // })
+      // .addCase(updateUserPassword.rejected, (state, action) => {
+      //   state.isLoading = false;
+      //   state.isError = true;
+      //   state.message = action.payload;
+      //   state.user = null;
+      // })
   },
 });
 

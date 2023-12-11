@@ -125,29 +125,29 @@ const updateUserEmail = asyncHandler(async (req, res) => {
 // @desc   Update the user's password
 // @route  PUT /api/users/update-password
 // @access Private -> protected route
-const updateUserPassword = asyncHandler(async (req, res) => {
-  const { updatedPassword } = req.body;
+// const updateUserPassword = asyncHandler(async (req, res) => {
+//   const { updatedPassword } = req.body;
 
-  if (!updatedPassword) {
-    res.status(400);
-    throw new Error("Enter valid password");
-  }
+//   if (!updatedPassword) {
+//     res.status(400);
+//     throw new Error("Enter valid password");
+//   }
 
-  const user = await User.findById(req.user.id);
+//   const user = await User.findById(req.user.id);
 
-  if (!user) {
-    res.status(400);
-    throw new Error("User does not exist");
-  }
+//   if (!user) {
+//     res.status(400);
+//     throw new Error("User does not exist");
+//   }
 
-  const salt = await bcrypt.genSalt(10);
-  user.password = await bcrypt.hash(updatedPassword, salt);
-  await user.save();
+//   const salt = await bcrypt.genSalt(10);
+//   user.password = await bcrypt.hash(updatedPassword, salt);
+//   await user.save();
 
-  res.status(200).json({
-    password: updatedPassword,
-  });
-});
+//   res.status(200).json({
+//     password: updatedPassword,
+//   });
+// });
 
 // @desc   Update the user's avatar
 // @route  POST /api/users/upload-avatar
@@ -182,6 +182,6 @@ module.exports = {
   loginUser,
   getUser,
   updateUserEmail,
-  updateUserPassword,
+  // updateUserPassword,
   uploadUserAvatar,
 };

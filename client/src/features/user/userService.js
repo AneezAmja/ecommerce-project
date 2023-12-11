@@ -83,21 +83,21 @@ const updateUserEmail = async (formData) => {
 };
 
 // updating the user's password
-const updateUserPassword = async (formData) => {
-  const user = JSON.parse(localStorage.getItem("user"));
+// const updateUserPassword = async (formData) => {
+//   const user = JSON.parse(localStorage.getItem("user"));
 
-  const response = axios.create({
-    headers: {
-      Authorization: `Bearer ${user.token}`,
-    },
-  });
+//   const response = axios.create({
+//     headers: {
+//       Authorization: `Bearer ${user.token}`,
+//     },
+//   });
 
-  const res = await response.put(API_URL + "update-password", formData);
+//   const res = await response.put(API_URL + "update-password", formData);
 
-  const { email, ...userData } = res.data;
+//   const { email, ...userData } = res.data;
 
-  return { ...userData, email };
-};
+//   return { ...userData, email };
+// };
 
 // logout user
 const logout = async () => {
@@ -110,7 +110,7 @@ const userService = {
   getUser,
   uploadAvatar,
   updateUserEmail,
-  updateUserPassword,
+  // updateUserPassword,
   login,
 };
 
