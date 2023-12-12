@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "public/**/*", "use": "@vercel/static" },
+    { "src": "src/**/*", "use": "@vercel/node" }
+  ],
+  "routes": [
+    { "src": "/static/(.*)", "dest": "/public/static/$1" },
+    { "src": "/favicon.ico", "dest": "/public/favicon.ico" },
+    { "src": "/manifest.json", "dest": "/public/manifest.json" },
+    { "src": "/robots.txt", "dest": "/public/robots.txt" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ]
+}
