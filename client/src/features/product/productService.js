@@ -1,13 +1,12 @@
 import axios from "axios";
 
-/*
 
 const apiURL = process.env.REACT_APP_API_URL;
 
 const API_URL = `${apiURL}/api/products`;
-*/
 
-const API_URL = "/api/products";
+
+// const API_URL = "/api/products";
 
 // Get all products
 const getProducts = async () => {
