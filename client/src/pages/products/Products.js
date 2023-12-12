@@ -30,7 +30,11 @@ const Products = () => {
 
       <div className="products">
         {[...products] // array is read-only due to the way it's being managed by Redux, so we copy the products
-          .sort((a, b) => a._id.localeCompare(b._id)) //sorting by id
+          .sort((a, b) => {
+            const idA = a._id || "";
+            const idB = b._id || "";
+            return idA.localeCompare(idB);
+          }) //sorting by id
           .map((product) => (
             <Link to={product._id} className="product" key={product._id}>
               <div className="product__image-container">
