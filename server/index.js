@@ -10,7 +10,7 @@ connectDB()
 const app = express();
 
 const corsOptions = {
-  origin: 'https://ecommerce-project-client-ie5szuael-aneezs-projects.vercel.app',
+  origin: 'https://ecommerce-project-client-hu6ovgpew-aneezs-projects.vercel.app',
 };
 
 
