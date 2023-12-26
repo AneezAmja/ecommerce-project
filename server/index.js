@@ -15,7 +15,7 @@ const app = express();
 app.use(express.json())
 // Example CORS configuration
 app.use(cors({
-  origin: 'https://ecommerce-project-bay.vercel.app/products', 
+  origin: 'https://ecommerce-project-bay.vercel.app', 
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 }));
