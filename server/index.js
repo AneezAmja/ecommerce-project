@@ -13,7 +13,13 @@ const app = express();
 
 //MIDDLEWARE
 app.use(express.json())
-app.use(cors());
+// Example CORS configuration
+app.use(cors({
+  origin: 'https://ecommerce-project-bay.vercel.app', 
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+}));
+
 app.use(express.urlencoded({extended: false}))
 app.use('/assets', express.static(path.join(__dirname, 'data', 'assets')));
 app.use('/uploads/images/avatars', express.static(path.join(__dirname, 'public', 'images', 'avatars')));
