@@ -5,7 +5,6 @@ const connectDB = require('./config/db')
 const path = require('path');
 const cors = require('cors');
 
-
 connectDB()
 const app = express();
 
@@ -15,7 +14,9 @@ const app = express();
 app.use(express.json())
 // Example CORS configuration
 app.use(cors({
-  origin: 'https://ecommerce-project-bay.vercel.app', 
+  origin: process.env.NODE_ENV === 'production'
+    ? 'https://ecommerce-project-bay.vercel.app'
+    : 'http://localhost:3000',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true,
 }));
