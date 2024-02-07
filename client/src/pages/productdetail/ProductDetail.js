@@ -23,6 +23,7 @@ const ProductDetail = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    window.scrollTo(0, 0);
     dispatch(getUser());
     dispatch(getIndividualProduct(id));
 
@@ -53,6 +54,7 @@ const ProductDetail = () => {
             src={product?.imageURL}
             alt={product?.name}
             className="product-detail__image"
+            loading="lazy"
           />
         </div>
 
