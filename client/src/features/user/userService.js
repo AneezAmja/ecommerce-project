@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const apiURL = process.env.REACT_APP_API_URL;
+const apiURL = process.env.NODE_ENV === 'production'
+  ? process.env.REACT_APP_API_URL_PROD
+  : process.env.REACT_APP_API_URL_LOCAL;
 
 const API_URL = `${apiURL}/api/users/`;
-
-// const API_URL = "/api/users/";
 
 // Register user
 const register = async (userData) => {
