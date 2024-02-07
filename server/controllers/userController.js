@@ -3,6 +3,15 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/User");
+const dotenv = require("dotenv").config();
+const cloudinary = require('cloudinary').v2
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+  secure: true,
+})
 
 /**************************************************************
  *                                                            *
@@ -153,22 +162,29 @@ const updateUserEmail = asyncHandler(async (req, res) => {
 // @route  POST /api/users/upload-avatar
 // @access Private -> protected route
 const uploadUserAvatar = asyncHandler(async (req, res) => {
-  // const { uploadUserAvatar } = req.body
-
   const user = await User.findById(req.user.id);
 
   if (req.file) {
-    // console.log(req.file)
-    const relativeFilePath = "images/avatars/" + req.file.originalname;
-    user.profileImageURL = relativeFilePath;
+    try {
+      // Upload the avatar to Cloudinary
+      const result = await cloudinary.uploader.upload(req.file.path);
+
+      // Save the Cloudinary URL in your user database
+      user.profileImageURL = result.secure_url;
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({ error: 'Avatar upload failed' });
+    }
   }
 
   await user.save();
 
-  res
-    .status(201)
-    .json({ msg: "Avatar uploaded successfully", redirectUrl: "/profile" });
+  res.status(201).json({
+    msg: 'Avatar uploaded successfully',
+    redirectUrl: '/profile',
+  });
 });
+
 
 // @desc   Generate JWT, signs a new token with the ID and uses the secret
 const generateToken = (id) => {
