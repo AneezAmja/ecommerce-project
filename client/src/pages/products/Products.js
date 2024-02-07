@@ -25,7 +25,7 @@ const Products = () => {
   return (
     <div className="product-container">
       <section className="category-title-container">
-        <h1 className="category-title">Must buy products!</h1>
+        <h2 className="category-title">Must buy products!</h2>
       </section>
 
       <div className="products">
@@ -42,6 +42,7 @@ const Products = () => {
                   src={product.imageURL}
                   alt={product.name}
                   className="product__image"
+                  loading="lazy"
                 />
               </div>
               <h3 className="product__name">{product.name}</h3>
