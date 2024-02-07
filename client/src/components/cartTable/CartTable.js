@@ -62,6 +62,7 @@ const CartTable = () => {
                     src={cartItem.productImage}
                     alt={cartItem.productName}
                     className="cart-table__image"
+                    loading="lazy"
                   />{" "}
                   <p className="cart-table__name">{cartItem.productName} </p>
                 </div>

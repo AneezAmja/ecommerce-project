@@ -33,6 +33,7 @@ const ProfileIcon = ({ user }) => {
               "https://static.wikia.nocookie.net/shingekinokyojin/images/a/a1/Eren_Jaeger_%28Anime%29_character_image.png/revision/latest?cb=20220123225500"
             }
             alt=""
+            loading="lazy"
           />
         </Link>
       )}

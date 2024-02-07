@@ -15,7 +15,9 @@ function Header() {
       <div className="header__left">
         <div className="header__logo">
           <Link to="/">
-            <img src={logoImage} alt="Logo" />
+            <img src={logoImage} alt="Logo" 
+            loading="lazy"
+            />
           </Link>
         </div>
         <div className="header__title">
