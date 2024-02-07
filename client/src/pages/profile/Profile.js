@@ -97,7 +97,7 @@ const Profile = () => {
           {user && user.profileImageURL ? (
             <img
               className="profile-image"
-              src={`uploads/${user?.profileImageURL}`}
+              src={`${user?.profileImageURL}`}
               alt=""
             />
           ) : (
