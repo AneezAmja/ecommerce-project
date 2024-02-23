@@ -25,13 +25,13 @@ This is a full stack application which utilises the MERN stack. It features a ro
 
 ### Project Setup: <br>
 
-**Starting the Server:**
+#### Starting the Server:
 
 Navigate to the server directory: ```cd server```
 
 Run the server: ```npm run start``` 
-
-**Starting the Client:**
+<br>
+#### Starting the Client
 
 Navigate to the client directory: ```cd client```
 
