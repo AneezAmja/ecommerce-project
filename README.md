@@ -20,9 +20,9 @@ This is a full stack application which utilises the MERN stack. It features a ro
     - MongoDB (v4+)
     - npm (v5+)
 ### Clone Repository
-    ```bash
-    git clone [https://github.com/AneezAmja/ecommerce-project.git](https://github.com/AneezAmja/ecommerce-project.git)
-    ```
+
+```git clone https://github.com/AneezAmja/ecommerce-project.git ```
+
 ### Project Setup: <br>
 
 **Starting the Server:**
