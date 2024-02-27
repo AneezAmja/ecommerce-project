@@ -1,6 +1,6 @@
 import React from "react";
 import "./Header.scss";
-import logoImage from "../../resources/images/Luffys-jolly-roger.png";
+import logoImage from "../../resources/images/Luffys-jolly-roger.webp";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ProfileIcon from "../profileIcon/ProfileIcon";
