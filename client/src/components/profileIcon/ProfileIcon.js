@@ -21,11 +21,11 @@ const ProfileIcon = ({ user }) => {
   return (
     <div className="profile-icon-container">
       {(user && !user.profileImageURL) || user.profileImageURL === "" ? (
-        <Link className="profile-icon--no-icon" onClick={handleProfileClick}>
+        <Link className="profile-icon--no-icon" onClick={handleProfileClick} aria-label="Profile icon that when clicked opens a menu to access profile settings">
           <div className="profile-icon">{user && user?.name ? user.name.charAt(0).toUpperCase() : ""}</div>
         </Link>
       ) : (
-        <Link onClick={handleProfileClick}>
+        <Link onClick={handleProfileClick} aria-label="Profile icon that when clicked opens a menu to access profile settings">
           <img
             className="avatar-image"
             src={
