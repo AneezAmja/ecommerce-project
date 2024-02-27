@@ -128,7 +128,7 @@
 
 .login-button{
     text-align: center;
-    background: #7070cc;
+    background: var(--colour-purple);
     color: #f0f0f0;
     border-radius: 8px;
     padding: 10px 0;
@@ -136,4 +136,5 @@
     font-family: 'Inter-Regular';
     border: none;
     cursor: pointer;
+    font-size: 14px;
 }
