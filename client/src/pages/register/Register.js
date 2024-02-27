@@ -70,7 +70,7 @@ const Register = () => {
       <div className="register-container__form">
         <div className="register-container__form--left">
           <div className="register-image">
-            <h3 className="register-title">Create an account</h3>
+            <h1 className="register-title">Create an account</h1>
           </div>
         </div>
 
