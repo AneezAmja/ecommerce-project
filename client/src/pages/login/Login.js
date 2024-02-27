@@ -94,7 +94,7 @@ const Login = () => {
 
         <div className="login-container__form--right">
           <div className="login-image">
-            <h3 className="login-title">Sign in</h3>
+            <h1 className="login-title">Sign in</h1>
           </div>
         </div>
       </div>
