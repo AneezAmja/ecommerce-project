@@ -119,6 +119,7 @@ const Profile = () => {
               name="avatar"
               className="upload-image"
               onChange={handleFileChange}
+              aria-label="Upload Avatar"
             />
           </div>
           <button className="save-image" onClick={handleUpload}>
