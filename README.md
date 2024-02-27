@@ -23,6 +23,9 @@ This is a full stack application which utilises the MERN stack. It features a ro
 
 ```git clone https://github.com/AneezAmja/ecommerce-project.git ```
 
+### Database Setup:
+- Follow MongoDB setup instructions (e.g., create a database and user).
+- Configure environment variables with your MongoDB connection details.
 ### Project Setup: <br>
 
 #### Starting the Server:
