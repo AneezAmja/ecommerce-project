@@ -167,7 +167,12 @@ const uploadUserAvatar = asyncHandler(async (req, res) => {
   if (req.file) {
     try {
       // Upload the avatar to Cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path);
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        transformation: [
+          { width: 200, height: 200, crop: 'fill', gravity: 'face' },
+          { format: 'webp' },
+        ],
+      });
 
       // Save the Cloudinary URL in your user database
       user.profileImageURL = result.secure_url;
