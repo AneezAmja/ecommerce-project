@@ -99,7 +99,7 @@ const removeFromCart = asyncHandler(async (req, res) => {
     const { productId } = req.body;
 
     // Find the product by its _id
-    const product = await ProductDetail.findById(productId);
+    const product = await Products.findById(productId);
 
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
