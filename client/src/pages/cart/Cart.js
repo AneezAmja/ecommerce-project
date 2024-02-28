@@ -20,7 +20,7 @@ const Cart = () => {
     dispatch(getUser());
     dispatch(getCart());
 
-    console.log(cart[0]?.items)
+    // console.log(cart[0]?.items)
 
     if (isError) {
       toast.error(message);
