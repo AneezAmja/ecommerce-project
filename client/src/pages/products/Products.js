@@ -35,20 +35,34 @@ const Products = () => {
             const idB = b._id || "";
             return idA.localeCompare(idB);
           }) //sorting by id
-          .map((product) => (
-            <Link to={product._id} className="product" key={product._id}>
-              <div className="product__image-container">
-                <img
-                  src={product.imageURL}
-                  alt={product.name}
-                  className="product__image"
-                  loading="lazy"
-                />
-              </div>
-              <h3 className="product__name">{product.name}</h3>
-              <p className="product__price">£{product.price}</p>
-            </Link>
-          ))}
+          .map((product) => {
+            // Define image sizes based on your design/layout
+            const imageSizes = [256, 512, 1024];
+
+            // Generate a comma-separated list of image URLs with sizes
+            const srcSet = imageSizes
+              .map((size) => {
+                const imageUrl = `${product.imageURL}?w=${size}`;
+                return `${imageUrl} ${size}w`;
+              })
+              .join(", ");
+
+            return (
+              <Link to={product._id} className="product" key={product._id}>
+                <div className="product__image-container">
+                  <img
+                    src={product.imageURL}
+                    srcSet={srcSet}
+                    alt={product.name}
+                    className="product__image"
+                    loading="lazy"
+                  />
+                </div>
+                <h3 className="product__name">{product.name}</h3>
+                <p className="product__price">£{product.price}</p>
+              </Link>
+            );
+          })}
       </div>
     </div>
   );
