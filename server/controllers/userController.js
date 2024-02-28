@@ -171,6 +171,7 @@ const uploadUserAvatar = asyncHandler(async (req, res) => {
         transformation: [
           { width: 200, height: 200, crop: 'fill', gravity: 'face' },
           { format: 'webp' },
+          { quality: 'auto' , fetch_format: "auto"},
         ],
       });
 
