@@ -42,7 +42,7 @@ const Products = () => {
             // Generate a comma-separated list of image URLs with sizes
             const srcSet = imageSizes
               .map((size) => {
-                const imageUrl = `${product.imageURL}?w=${size}`;
+                const imageUrl = `${product.imageURL}`;
                 return `${imageUrl} ${size}w`;
               })
               .join(", ");
