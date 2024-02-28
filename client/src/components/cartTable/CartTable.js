@@ -25,10 +25,11 @@ const CartTable = () => {
     }
   }, [isError, message, dispatch]);
 
-  const handleRemoveProduct = () => {
+  const handleRemoveProduct = (idx) => {
 
     const cartData = {
-      productId: cart[0]?.items[0]?.productId
+
+      productId: cart[0]?.items[idx]?.productId
     }
 
     dispatch(removeFromCart(cartData)).then(()=> dispatch(getCart()))
@@ -51,7 +52,7 @@ const CartTable = () => {
         </tr>
       </thead>
       <tbody>
-        {cart && cart[0]?.items?.map((cartItem) => {
+        {cart && cart[0]?.items?.map((cartItem,idx) => {
           return (
             <tr key={cartItem._id} className="cart-table__row">
               <td className="cart__product-item">
@@ -69,7 +70,7 @@ const CartTable = () => {
               <td className="cart__quantity">{cartItem.quantity}</td>
               <td className="cart__final-price">{`£${cartItem.productPrice * cartItem.quantity} `}</td>
               <td className="cart__remove-item">
-                  <div className="cart-remove" onClick={handleRemoveProduct}>
+                  <div className="cart-remove" onClick={()=>handleRemoveProduct(idx)}>
                     <FaTimes />
 
                   </div>
