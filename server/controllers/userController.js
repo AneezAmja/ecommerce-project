@@ -169,9 +169,9 @@ const uploadUserAvatar = asyncHandler(async (req, res) => {
       // Upload the avatar to Cloudinary
       const result = await cloudinary.uploader.upload(req.file.path, {
         transformation: [
-          { width: 200, height: 200, crop: 'fill', gravity: 'face' },
-          { format: 'webp' },
-          { quality: 100 , fetch_format: "auto"},
+          { width: 200, height: 200, crop: 'fill', gravity: 'auto' },
+          {format: "webp"},
+          { quality: 100 , fetch_format: "webp"},
         ],
       });
 
