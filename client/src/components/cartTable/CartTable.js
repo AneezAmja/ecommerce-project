@@ -26,12 +26,10 @@ const CartTable = () => {
   }, [isError, message, dispatch]);
 
   const handleRemoveProduct = () => {
-    console.log("hey")
 
     const cartData = {
-      productId: cart[0]?.items[0]?.productId,
+      productId: cart[0]?.items[0]?.productId
     }
-
 
     dispatch(removeFromCart(cartData)).then(()=> dispatch(getCart()))
 
