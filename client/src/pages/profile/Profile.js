@@ -99,7 +99,6 @@ const Profile = () => {
               className="profile-image"
               src={`${user?.profileImageURL}`}
               alt=""
-              loading="lazy"
             />
           ) : (
             <div className="profile-image--default">
