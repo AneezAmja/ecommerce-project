@@ -28,7 +28,7 @@ const Products = () => {
 
       {isLoading ? (
         <div className="products">
-          <ProductsSkeleton cards={15} />
+          <ProductsSkeleton items={15} />
         </div>
       ) : (
         <div className="products">

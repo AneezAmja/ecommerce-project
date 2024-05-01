@@ -3,8 +3,8 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import "./Products.scss";
 
-const ProductsSkeleton = ({ cards }) => {
-  return Array(cards)
+const ProductsSkeleton = ({ items }) => {
+  return Array(items)
     .fill(0)
     .map((i) => (
       <div className="product" key={i}>
