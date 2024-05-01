@@ -39,6 +39,7 @@
     width: 100%;
     position: relative;
     padding-bottom: calc(4 / 3 * 100%); /* 4:3 aspect ratio */
+
 }
 
 .product__image-container img {
@@ -48,4 +49,10 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.product__name{
+    &--loading{
+        margin-top: 3px;
+    }
 }
