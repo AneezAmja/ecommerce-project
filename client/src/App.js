@@ -14,11 +14,13 @@ import Profile from "./pages/profile/Profile";
 import Cart from "./pages/cart/Cart";
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { SkeletonTheme } from "react-loading-skeleton";
 
 function App() {
   return (
     <>
       <div className="app">
+        <SkeletonTheme baseColor="#313131" highlightColor="#525252">
         <Router>
           <Routes>
             <Route path="/products" element={<><Header /> <Home /> </>} />
@@ -30,6 +32,7 @@ function App() {
             <Route path="*" element={<Navigate replace to={"/products"} />} />
           </Routes>
         </Router>
+        </SkeletonTheme>
       </div>
         <ToastContainer limit={1}/>
     </>
