@@ -36,7 +36,7 @@ const Cart = () => {
     <div className="shopping-cart__container">
       <FaShoppingCart
         className="shopping-cart"
-        style={{ marginRight: "30px", width: "20px", height: "20px" }}
+        style={{ width: "20px", height: "20px" }}
       />
       <div className="shopping-cart--counter">
         {totalQuantity}

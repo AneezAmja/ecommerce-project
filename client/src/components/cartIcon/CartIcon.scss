@@ -11,8 +11,8 @@
     font-size: 11px;
     margin: 0;
     position: relative;
-    bottom: 38px;
-    left: 14px;
+    bottom: 14px;
+    left: -6px;
     z-index: -1;
 }
 
@@ -25,4 +25,11 @@
     border-style: solid;
     border-color: transparent transparent red transparent;
     border-width: 0 0px 15px 9px;
+}
+
+.shopping-cart__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
 }
