@@ -1,3 +1,5 @@
+@import '../../styles/utilities'; 
+
 .profile-icon-container{
     position: relative;
 }
@@ -29,7 +31,7 @@
 .dropdown-menu {
     position: absolute;
     top: 100%;
-    left: 50%;
+    left: -30%;
     transform: translateX(-50%);
     background: #ffffff;
     box-shadow: -10px 9px 20px rgba(0, 0, 0, 0.3);
@@ -38,12 +40,16 @@
     min-width: 120px;
     border-radius: 8%;
     margin-top: 10px;
+
+    @include breakpoint(l){
+        left: 50%;
+    }
 }
 
 .dropdown-menu:after {
     content: '';
     position: absolute;
-    left: 50%;
+    left: 80%;
     top: -10px;
     width: 0;
     height: 0;
@@ -52,6 +58,10 @@
     border-top: 15px solid #fff;
     clear: both;
     transform: rotateX(180deg) translateX(-50%);
+    
+    @include breakpoint(l){
+        left: 50%;
+    }
 }
 
 .dropdown-menu__items {
