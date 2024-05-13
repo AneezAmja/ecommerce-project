@@ -1,16 +1,17 @@
 const path = require("path");
-
+const os = require("os");
 const multer = require("multer");
 
 /* FILE STORAGE */
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, "../public/images/avatars/"));
+    const tmpDir = os.tmpdir();
+    cb(null, tmpDir); // Use the system's temporary directory
   },
   filename: function (req, file, cb) {
-    // let ext = path.extname(file.originalname);
+        // let ext = path.extname(file.originalname);
     // cb(null, file.originalname + Date.now() + ext);
-    cb(null, file.originalname);
+    cb(null, file.originalname); 
   },
 });
 
